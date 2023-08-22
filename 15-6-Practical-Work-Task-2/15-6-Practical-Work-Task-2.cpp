@@ -18,31 +18,57 @@ a = {2, 7, 11, 15}. Результат = 9
 #include <iostream>
 #include <vector>
 
-int main() {
-    std::vector<int> vec = { 2, 7, 11, 15 };
-    int target = 9;
+// первое решение
+//int main() {
+//    std::vector<int> vec = { 2, 7, 11, 15 };
+//    int target = 9;
+//
+//    int left = 0; // Указатель на начало массива
+//    int right = vec.size() - 1; // Указатель на конец массива
+//
+//    for (int i = 0; left < right; i++) 
+//    {
+//        int sum = vec[left] + vec[right];
+//
+//        if (sum == target) 
+//        {
+//            std::cout << "Числа " << vec[left] << " и " << vec[right] << " дадут сумму " << target << std::endl;
+//            break;
+//        }
+//        else if (sum < target) 
+//        {
+//            left++;
+//        }
+//        else {
+//            right--;
+//        }
+//    }
+//
+//    return 0;
+//}
 
-    int left = 0; // Указатель на начало массива
-    int right = vec.size() - 1; // Указатель на конец массива
 
-    for (int i = 0; left < right; i++) 
+// лучшее решение
+#include <iostream>
+
+void findPair(int array[], int size, int sum)
+{
+    for (int i = 0; i < size; i++)
     {
-        int sum = vec[left] + vec[right];
-
-        if (sum == target) 
+        for (int j = i; j < size; j++)
         {
-            std::cout << "Числа " << vec[left] << " и " << vec[right] << " дадут сумму " << target << std::endl;
-            break;
-        }
-        else if (sum < target) 
-        {
-            left++;
-        }
-        else {
-            right--;
+            if (array[i] + array[j] == sum)
+            {
+                std::cout << "First " << array[i] << " and Second " << array[j] << " Will give " << sum;
+                return;
+            }
         }
     }
-
-    return 0;
 }
 
+int main()
+{
+    int a[] = { 2, 7, 11, 15 };
+    findPair(a, 4, 9);
+    return 0;
+}
